@@ -27,10 +27,13 @@ def candidate_roots() -> list[Path]:
     it is not the recovered APK tree and should not mask the real repo when the
     EXE is launched from there.
     """
-    roots = [Path.cwd()]
+    cwd = Path.cwd()
+    roots = [cwd, cwd.parent]
     if getattr(sys, "frozen", False):
-        roots.append(Path(sys.executable).resolve().parent)
-    roots.append(Path(__file__).resolve().parents[2])
+        exe_dir = Path(sys.executable).resolve().parent
+        roots.extend([exe_dir, exe_dir.parent])
+    source_root = Path(__file__).resolve().parents[2]
+    roots.extend([source_root, source_root.parent])
     bundle = getattr(sys, "_MEIPASS", None)
     if bundle:
         roots.append(Path(bundle).resolve())
