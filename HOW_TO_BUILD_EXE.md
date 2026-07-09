@@ -20,6 +20,12 @@ That creates:
 dist\YuyuyuiDesktopShell.exe
 ```
 
+If the script fails when double-clicked, it now stays open and shows the error. To run it from an already-open terminal without the final pause, use:
+
+```powershell
+.\packaging\windows_desktop\build_desktop_shell.ps1 -NoPause
+```
+
 ## Option 2: Build an emulator EXE launcher
 
 This repository is a decompiled Android Unity APK, so another practical Windows `.exe` is a launcher that starts the Android build in an Android emulator.
@@ -45,6 +51,12 @@ That creates:
 
 ```text
 dist\YuyuyuiLauncher.exe
+```
+
+To run it from an already-open terminal without the final pause, use:
+
+```powershell
+.\packaging\windows\build_launcher.ps1 -NoPause
 ```
 
 ### Run it
