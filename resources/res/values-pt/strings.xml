@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="AUTH_REQUIRE_TITLE">autorização necessária</string>
+    <string name="CHOOSE_IMAGE">Escolha a imagem</string>
+    <string name="DOWNLOAD_STARTED">O download foi iniciado</string>
+    <string name="EXTERNAL_WRITE_PERMISSION_LACK">Nenhuma permissão de gravação de armazenamento externo.</string>
+    <string name="INVALID_URL">URL inválida</string>
+    <string name="LOADING">Carregando…</string>
+    <string name="PASSWORD">Senha</string>
+    <string name="SAVE_IMAGE">Salvar imagem</string>
+    <string name="USERNAME">Nome de usuário</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+</resources>

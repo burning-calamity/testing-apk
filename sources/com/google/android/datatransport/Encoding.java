@@ -1,0 +1,44 @@
+package com.google.android.datatransport;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+/* JADX INFO: compiled from: com.google.android.datatransport:transport-api@@2.2.0 */
+/* JADX INFO: loaded from: classes.dex */
+public final class Encoding {
+    private final String name;
+
+    public static Encoding of(@NonNull String str) {
+        return new Encoding(str);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    private Encoding(@NonNull String str) {
+        if (str == null) {
+            throw new NullPointerException("name is null");
+        }
+        this.name = str;
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Encoding) {
+            return this.name.equals(((Encoding) obj).name);
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        return this.name.hashCode() ^ 1000003;
+    }
+
+    @NonNull
+    public String toString() {
+        return "Encoding{name=\"" + this.name + "\"}";
+    }
+}

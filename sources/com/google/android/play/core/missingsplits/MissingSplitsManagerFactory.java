@@ -1,0 +1,17 @@
+package com.google.android.play.core.missingsplits;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import java.util.concurrent.atomic.AtomicReference;
+
+/* JADX INFO: loaded from: classes.dex */
+@Deprecated
+public class MissingSplitsManagerFactory {
+    private static final AtomicReference<Boolean> a = new AtomicReference<>(null);
+
+    @NonNull
+    @Deprecated
+    public static MissingSplitsManager create(@NonNull Context context) {
+        return new b(context, Runtime.getRuntime(), new a(context, context.getPackageManager()), a);
+    }
+}

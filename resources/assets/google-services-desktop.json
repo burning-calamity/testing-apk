@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "165369848390",
+    "firebase_url": "https://yuyuyui-f7acc.firebaseio.com",
+    "project_id": "yuyuyui-f7acc",
+    "storage_bucket": "yuyuyui-f7acc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165369848390:android:6f5c1dcba2cc9938",
+        "android_client_info": {
+          "package_name": "jp.co.altplus.yuyuyui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165369848390-uv1uv0tbphu4kdchs4nv2umkb7ehc850.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_7UZ7Vo4lnf2Cnmnd1JJh1YB2pT2Zd_4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
