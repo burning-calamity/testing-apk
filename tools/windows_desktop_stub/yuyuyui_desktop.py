@@ -20,18 +20,51 @@ ANDROID_NS = "{http://schemas.android.com/apk/res/android}"
 
 
 def candidate_roots() -> list[Path]:
-    roots: list[Path] = []
+    """Return likely repository roots, preferring real folders over bundles.
+
+    PyInstaller one-file apps unpack bundled data into a temporary _MEIPASS
+    directory. That directory may contain a copied manifest for app metadata, but
+    it is not the recovered APK tree and should not mask the real repo when the
+    EXE is launched from there.
+    """
+    roots = [Path.cwd()]
     if getattr(sys, "frozen", False):
         roots.append(Path(sys.executable).resolve().parent)
-        bundle = getattr(sys, "_MEIPASS", None)
-        if bundle:
-            roots.append(Path(bundle).resolve())
     roots.append(Path(__file__).resolve().parents[2])
-    roots.append(Path.cwd())
-    return roots
+    bundle = getattr(sys, "_MEIPASS", None)
+    if bundle:
+        roots.append(Path(bundle).resolve())
+
+    unique_roots: list[Path] = []
+    for root in roots:
+        resolved = root.resolve()
+        if resolved not in unique_roots:
+            unique_roots.append(resolved)
+    return unique_roots
+
+
+def has_recovered_content(root: Path) -> bool:
+    return any(
+        (root / relative_path).exists()
+        for relative_path in (
+            Path("resources/assets/bin/Data"),
+            Path("resources/lib"),
+            Path("sources"),
+        )
+    )
 
 
 def find_repo_root() -> Path | None:
+    for root in candidate_roots():
+        if (root / "resources" / "AndroidManifest.xml").is_file() and has_recovered_content(root):
+            return root
+    return None
+
+
+def find_manifest_root() -> Path | None:
+    repo_root = find_repo_root()
+    if repo_root is not None:
+        return repo_root
     for root in candidate_roots():
         if (root / "resources" / "AndroidManifest.xml").is_file():
             return root
@@ -81,7 +114,7 @@ class DesktopShell(tk.Tk):
         self.geometry("780x520")
         self.minsize(680, 440)
         self.repo_root = find_repo_root()
-        self.package_name, self.version = parse_manifest(self.repo_root)
+        self.package_name, self.version = parse_manifest(find_manifest_root())
         self._build_ui()
 
     def _build_ui(self) -> None:
