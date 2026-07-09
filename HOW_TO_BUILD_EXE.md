@@ -14,6 +14,12 @@ From the repository root in PowerShell:
 .\packaging\windows_desktop\build_desktop_shell.ps1
 ```
 
+If you are double-clicking from File Explorer, use this wrapper instead because it always pauses before closing:
+
+```text
+packaging\windows_desktop\build_desktop_shell.cmd
+```
+
 That creates:
 
 ```text
@@ -45,6 +51,12 @@ From the repository root in PowerShell:
 
 ```powershell
 .\packaging\windows\build_launcher.ps1
+```
+
+If you are double-clicking from File Explorer, use this wrapper instead because it always pauses before closing:
+
+```text
+packaging\windows\build_launcher.cmd
 ```
 
 That creates:

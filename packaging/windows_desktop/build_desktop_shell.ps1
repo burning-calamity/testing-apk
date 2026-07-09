@@ -8,7 +8,13 @@ $ExitCode = 0
 function Pause-BeforeExit {
     if (-not $NoPause) {
         Write-Host ''
-        Read-Host 'Press Enter to close this window'
+        Write-Host 'Press any key to close this window . . .'
+        try {
+            $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+        }
+        catch {
+            cmd /c pause | Out-Null
+        }
     }
 }
 

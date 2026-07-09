@@ -26,3 +26,5 @@ If the package is already installed in the emulator, omit `--apk` to launch it d
 ## Native EXE path
 
 A true native Windows `.exe` requires the original Unity project or a reconstructed Unity project with Windows-compatible plugins and assets. The Android-only native libraries in `resources/lib/arm64-v8a` and `resources/lib/armeabi-v7a` cannot be loaded by Windows, so they must be replaced by Windows builds before a native Unity player can be produced.
+
+If double-clicking the PowerShell script closes too quickly on your machine, double-click `packaging\windows\build_launcher.cmd` instead. The CMD wrapper runs the same build and always pauses before closing.

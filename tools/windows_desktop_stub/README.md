@@ -15,3 +15,5 @@ Output:
 ```text
 dist\YuyuyuiDesktopShell.exe
 ```
+
+If double-clicking the PowerShell script closes too quickly on your machine, double-click `packaging\windows_desktop\build_desktop_shell.cmd` instead. The CMD wrapper runs the same build and always pauses before closing.
