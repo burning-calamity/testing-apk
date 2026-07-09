@@ -2,9 +2,27 @@
 
 There are two different meanings of “turn this into an EXE”:
 
-## Option 1: Build an EXE launcher now
+## Option 1: Build a no-device Windows EXE now
 
-This repository is a decompiled Android Unity APK, so the fastest working Windows `.exe` is a launcher that starts the Android build in an Android emulator. This has already been scaffolded.
+This creates `YuyuyuiDesktopShell.exe`, a real Windows executable that does not use `adb`, an emulator, or a phone. It is a desktop compatibility shell around the recovered APK contents, not the complete playable game.
+
+### Build the no-device EXE
+
+From the repository root in PowerShell:
+
+```powershell
+.\packaging\windows_desktop\build_desktop_shell.ps1
+```
+
+That creates:
+
+```text
+dist\YuyuyuiDesktopShell.exe
+```
+
+## Option 2: Build an emulator EXE launcher
+
+This repository is a decompiled Android Unity APK, so another practical Windows `.exe` is a launcher that starts the Android build in an Android emulator.
 
 ### Requirements
 
@@ -43,7 +61,7 @@ After the APK is installed once, you can launch it without reinstalling:
 .\dist\YuyuyuiLauncher.exe
 ```
 
-## Option 2: Make a real native Windows game EXE
+## Option 3: Make a real native Windows game EXE
 
 A native Windows game executable cannot be produced directly from this decompiled APK tree alone. The files under `resources/lib/arm64-v8a` and `resources/lib/armeabi-v7a` are Android `.so` libraries. Windows cannot load those libraries.
 
@@ -63,7 +81,10 @@ The high-level native port process is:
 
 ## What is in this repo now
 
-- `tools/windows_launcher/yuyuyui_launcher.py`: Python launcher source.
-- `packaging/windows/yuyuyui_launcher.spec`: PyInstaller build spec.
-- `packaging/windows/build_launcher.ps1`: one-command Windows build script.
+- `tools/windows_desktop_stub/yuyuyui_desktop.py`: no-device desktop shell source.
+- `packaging/windows_desktop/yuyuyui_desktop.spec`: no-device desktop shell PyInstaller build spec.
+- `packaging/windows_desktop/build_desktop_shell.ps1`: one-command no-device EXE build script.
+- `tools/windows_launcher/yuyuyui_launcher.py`: emulator launcher source.
+- `packaging/windows/yuyuyui_launcher.spec`: emulator launcher PyInstaller build spec.
+- `packaging/windows/build_launcher.ps1`: one-command emulator launcher build script.
 - `tools/windows_launcher/README.md`: launcher-specific notes.
